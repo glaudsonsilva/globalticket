@@ -21,6 +21,12 @@ namespace GlobalTicket.TicketManagement.Application.Features.Events.Commands.Cre
 
         public async Task<Guid> Handle(CreateEventCommand request, CancellationToken cancellationToken)
         {
+            var validator = new CreateEventCommandValidator(_repository);
+            var validationResult = await validator.ValidateAsync(request);
+
+            if (!validationResult.IsValid)
+                throw new Exceptions.ValidationException(validationResult);
+
             var @event = _mapper.Map<Event>(request);
 
             @event = await _repository.AddAsync(@event);
