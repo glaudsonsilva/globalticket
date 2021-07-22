@@ -1,4 +1,4 @@
-﻿using GloboTicket.TicketManagement.Domain.Entities;
+﻿using GlobalTicket.TicketManagement.Domain.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

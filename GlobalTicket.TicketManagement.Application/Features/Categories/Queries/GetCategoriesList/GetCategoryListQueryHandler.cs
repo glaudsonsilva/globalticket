@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using GlobalTicket.TicketManagement.Application.Contracts.Persistance;
-using GloboTicket.TicketManagement.Domain.Entities;
+using GlobalTicket.TicketManagement.Domain.Entities;
 using MediatR;
 using System.Collections.Generic;
 using System.Linq;

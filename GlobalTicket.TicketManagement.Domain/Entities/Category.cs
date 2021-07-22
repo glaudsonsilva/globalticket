@@ -1,8 +1,8 @@
-﻿using GloboTicket.TicketManagement.Domain.Common;
+﻿using GlobalTicket.TicketManagement.Domain.Common;
 using System;
 using System.Collections.Generic;
 
-namespace GloboTicket.TicketManagement.Domain.Entities
+namespace GlobalTicket.TicketManagement.Domain.Entities
 {
     public class Category: AuditableEntity
     {
