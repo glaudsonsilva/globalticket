@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using GlobalTicket.TicketManagement.Application.Contracts.Infrastructure;
 using GlobalTicket.TicketManagement.Application.Contracts.Persistance;
+using GlobalTicket.TicketManagement.Application.Models.Mail;
 using GlobalTicket.TicketManagement.Domain.Entities;
 using MediatR;
 using System;
@@ -12,11 +14,13 @@ namespace GlobalTicket.TicketManagement.Application.Features.Events.Commands.Cre
     {
         private readonly IEventRepository _repository;
         private readonly IMapper _mapper;
+        private readonly IEmailService _emailService;
 
-        public CreateEventCommandHandler(IEventRepository repository, IMapper mapper)
+        public CreateEventCommandHandler(IEventRepository repository, IMapper mapper, IEmailService emailService)
         {
             _repository = repository;
             _mapper = mapper;
+            _emailService = emailService;
         }
 
         public async Task<Guid> Handle(CreateEventCommand request, CancellationToken cancellationToken)
@@ -31,7 +35,29 @@ namespace GlobalTicket.TicketManagement.Application.Features.Events.Commands.Cre
 
             @event = await _repository.AddAsync(@event);
 
+            await SendEmail(request);
+
             return @event.EventId;
+        }
+
+        private async Task SendEmail(CreateEventCommand request)
+        {
+            var email = new Email
+            {
+                To = "glaudsonsilva@gmail.com",
+                Body = $"A new event was created: {request.Name}",
+                Subject = "A new event was created"
+            };
+
+            try
+            {
+                await _emailService.SendEmail(email);
+            }
+            catch (Exception ex)
+            {
+                // this should't stop the API from doing else so this can be logged
+                throw;
+            }
         }
     }
 }
