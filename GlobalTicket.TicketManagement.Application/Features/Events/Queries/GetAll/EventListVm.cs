@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GlobalTicket.TicketManagement.Application.Features.Events.GetAll
+namespace GlobalTicket.TicketManagement.Application.Features.Events.Queries.GetAll
 {
     public class EventListVm
     {

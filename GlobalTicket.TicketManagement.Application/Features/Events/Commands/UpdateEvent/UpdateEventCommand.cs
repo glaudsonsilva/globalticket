@@ -1,8 +1,9 @@
-﻿using System;
+﻿using MediatR;
+using System;
 
-namespace GlobalTicket.TicketManagement.Application.Features.Events.GetDetailed
+namespace GlobalTicket.TicketManagement.Application.Features.Events.Commands.UpdateEvent
 {
-    public class EventDetailVm
+    public class UpdateEventCommand : IRequest
     {
         public Guid EventId { get; set; }
         public string Name { get; set; }
@@ -12,6 +13,5 @@ namespace GlobalTicket.TicketManagement.Application.Features.Events.GetDetailed
         public string Description { get; set; }
         public string ImageUrl { get; set; }
         public Guid CategoryId { get; set; }
-        public CategoryVm Category { get; set; }
     }
 }

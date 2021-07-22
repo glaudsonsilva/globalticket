@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using System;
 
-namespace GlobalTicket.TicketManagement.Application.Features.Events.GetDetailed
+namespace GlobalTicket.TicketManagement.Application.Features.Events.Queries.GetDetailed
 {
     public class GetEventDetailQuery : IRequest<EventDetailVm>
     {

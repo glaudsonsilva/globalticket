@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GlobalTicket.TicketManagement.Application.Features.Events.GetAll
+namespace GlobalTicket.TicketManagement.Application.Features.Events.Queries.GetAll
 {
     public class GetAllEventsListQueryHandler : IRequestHandler<GetAllEventsListQuery, List<EventListVm>>
     {
