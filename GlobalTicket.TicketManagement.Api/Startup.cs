@@ -1,3 +1,4 @@
+using GlobalTicket.TicketManagement.Api.Middleware;
 using GlobalTicket.TicketManagement.Api.Utility;
 using GlobalTicket.TicketManagement.Application;
 using GlobalTicket.TicketManagement.Infrastructure;
@@ -64,6 +65,8 @@ namespace GlobalTicket.TicketManagement.Api
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "GlobalTicket Ticket Management API");
             });
+
+            app.UseCustomExceptionHandler();
 
             app.UseCors("Open");
 
