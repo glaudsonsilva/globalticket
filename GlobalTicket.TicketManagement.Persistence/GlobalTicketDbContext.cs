@@ -6,7 +6,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GloboTicket.TicketManagement.Persistence
+namespace GlobalTicket.TicketManagement.Persistence
 {
     public class GlobalTicketDbContext : DbContext
     {
@@ -65,7 +65,7 @@ namespace GloboTicket.TicketManagement.Persistence
                 Artist = "John Egbert",
                 Date = DateTime.Now.AddMonths(6),
                 Description = "Join John for his farwell tour across 15 continents. John really needs no introduction since he has already mesmerized the world with his banjo.",
-                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/banjo.jpg",
+                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GlobalTicket/banjo.jpg",
                 CategoryId = concertGuid
             });
 
@@ -77,7 +77,7 @@ namespace GloboTicket.TicketManagement.Persistence
                 Artist = "Michael Johnson",
                 Date = DateTime.Now.AddMonths(9),
                 Description = "Michael Johnson doesn't need an introduction. His 25 concert across the globe last year were seen by thousands. Can we add you to the list?",
-                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/michael.jpg",
+                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GlobalTicket/michael.jpg",
                 CategoryId = concertGuid
             });
 
@@ -89,7 +89,7 @@ namespace GloboTicket.TicketManagement.Persistence
                 Artist = "DJ 'The Mike'",
                 Date = DateTime.Now.AddMonths(4),
                 Description = "DJs from all over the world will compete in this epic battle for eternal fame.",
-                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/dj.jpg",
+                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GlobalTicket/dj.jpg",
                 CategoryId = concertGuid
             });
 
@@ -101,7 +101,7 @@ namespace GloboTicket.TicketManagement.Persistence
                 Artist = "Manuel Santinonisi",
                 Date = DateTime.Now.AddMonths(4),
                 Description = "Get on the hype of Spanish Guitar concerts with Manuel.",
-                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/guitar.jpg",
+                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GlobalTicket/guitar.jpg",
                 CategoryId = concertGuid
             });
 
@@ -113,7 +113,7 @@ namespace GloboTicket.TicketManagement.Persistence
                 Artist = "Many",
                 Date = DateTime.Now.AddMonths(10),
                 Description = "The best tech conference in the world",
-                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/conf.jpg",
+                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GlobalTicket/conf.jpg",
                 CategoryId = conferenceGuid
             });
 
@@ -125,7 +125,7 @@ namespace GloboTicket.TicketManagement.Persistence
                 Artist = "Nick Sailor",
                 Date = DateTime.Now.AddMonths(8),
                 Description = "The critics are over the moon and so will you after you've watched this sing and dance extravaganza written by Nick Sailor, the man from 'My dad and sister'.",
-                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
+                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GlobalTicket/musical.jpg",
                 CategoryId = musicalGuid
             });
 

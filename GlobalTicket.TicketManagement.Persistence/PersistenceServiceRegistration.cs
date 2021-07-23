@@ -1,6 +1,6 @@
 ﻿using GlobalTicket.TicketManagement.Application.Contracts.Persistence;
 using GlobalTicket.TicketManagement.Persistence.Repositories;
-using GloboTicket.TicketManagement.Persistence;
+using GlobalTicket.TicketManagement.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

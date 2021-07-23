@@ -1,5 +1,5 @@
 ﻿using GlobalTicket.TicketManagement.Application.Contracts.Persistence;
-using GloboTicket.TicketManagement.Persistence;
+using GlobalTicket.TicketManagement.Persistence;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

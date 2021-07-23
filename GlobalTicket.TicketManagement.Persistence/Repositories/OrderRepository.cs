@@ -1,6 +1,6 @@
 ﻿using GlobalTicket.TicketManagement.Application.Contracts.Persistence;
 using GlobalTicket.TicketManagement.Domain.Entities;
-using GloboTicket.TicketManagement.Persistence;
+using GlobalTicket.TicketManagement.Persistence;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
