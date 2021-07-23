@@ -1,3 +1,4 @@
+using GlobalTicket.TicketManagement.Api.Utility;
 using GlobalTicket.TicketManagement.Application;
 using GlobalTicket.TicketManagement.Infrastructure;
 using GlobalTicket.TicketManagement.Persistence;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace GlobalTicket.TicketManagement.Api
 {
@@ -20,6 +22,8 @@ namespace GlobalTicket.TicketManagement.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            AddSwagger(services);
+
             services.AddApplicationServices();
             services.AddInfrastructureServices(Configuration);
             services.AddPersistenceServices(Configuration);
@@ -31,15 +35,35 @@ namespace GlobalTicket.TicketManagement.Api
             });
         }
 
+        private void AddSwagger(IServiceCollection services)
+        {
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "GlobalTicket Ticket Management API"
+                });
+
+                c.OperationFilter<FileResultContentTypeOperationFilter>();
+            });
+        }
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage(); 
+                app.UseDeveloperExceptionPage();
             }
 
             app.UseHttpsRedirection();
             app.UseRouting();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "GlobalTicket Ticket Management API");
+            });
 
             app.UseCors("Open");
 
