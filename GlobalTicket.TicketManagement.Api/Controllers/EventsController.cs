@@ -6,6 +6,7 @@ using GlobalTicket.TicketManagement.Application.Features.Events.Commands.DeleteE
 using GlobalTicket.TicketManagement.Application.Features.Events.Commands.UpdateEvent;
 using GlobalTicket.TicketManagement.Application.Features.Events.Queries.GetAll;
 using GlobalTicket.TicketManagement.Application.Features.Events.Queries.GetDetailed;
+using GlobalTicket.TicketManagement.Application.Features.Events.Queries.GetEventsExport;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -66,6 +67,13 @@ namespace GlobalTicket.TicketManagement.Api.Controllers
             var command = new DeleteEventCommand { EventId = id };
             await _mediator.Send(command);
             return NoContent();
+        }
+
+        [HttpGet("export", Name = "ExportEvents")]
+        public async Task<FileResult> ExportEvents()
+        {
+            var file = await _mediator.Send(new GetEventsExportQuery());
+            return File(file.Data, file.ContentType, file.EventExportFileName);
         }
     }
 }

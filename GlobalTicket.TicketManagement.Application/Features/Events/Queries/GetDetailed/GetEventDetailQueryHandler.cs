@@ -29,7 +29,7 @@ namespace GlobalTicket.TicketManagement.Application.Features.Events.GetDetailed
 
             var category = _categoryRepository.GetByIdAsync(@event.CategoryId);
 
-            eventDetail.Category = _mapper.Map<CategoryVm>(category);
+            eventDetail.Category = _mapper.Map<EventCategoryVm>(category);
 
             return eventDetail;
         }

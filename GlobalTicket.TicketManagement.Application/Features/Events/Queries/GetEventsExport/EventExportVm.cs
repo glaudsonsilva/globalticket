@@ -1,8 +1,9 @@
-﻿using System;
+﻿using GlobalTicket.TicketManagement.Application.Features.Events.Queries.GetDetailed;
+using System;
 
-namespace GlobalTicket.TicketManagement.Application.Features.Events.Queries.GetDetailed
+namespace GlobalTicket.TicketManagement.Application.Features.Events.Queries.GetEventsExport
 {
-    public class EventDetailVm
+    public class EventExportVm
     {
         public Guid EventId { get; set; }
         public string Name { get; set; }
@@ -12,6 +13,5 @@ namespace GlobalTicket.TicketManagement.Application.Features.Events.Queries.GetD
         public string Description { get; set; }
         public string ImageUrl { get; set; }
         public Guid CategoryId { get; set; }
-        public EventCategoryVm Category { get; set; }
     }
 }
