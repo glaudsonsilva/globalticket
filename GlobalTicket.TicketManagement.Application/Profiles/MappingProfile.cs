@@ -35,6 +35,7 @@ namespace GlobalTicket.TicketManagement.Application.Profiles
             CreateMap<Category, CategoryEventListVm>().ReverseMap();
             CreateMap<Category, CreateEventCommand>().ReverseMap();
             CreateMap<Category, CategoryResponse>().ReverseMap();
+            CreateMap<Category, CreateCategoryCommand>().ReverseMap();
         }
     }
 }

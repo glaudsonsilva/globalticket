@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 
 namespace GlobalTicket.TicketManagement.Application.Features.Categories.Queries.GetCategoriesList
 {
-    public class GetCategoryListQueryHandler : IRequestHandler<GetCategoryListQuery, List<CategoryListVm>>
+    public class GetCategoriesListQueryHandler : IRequestHandler<GetCategoriesListQuery, List<CategoryListVm>>
     {
         private readonly IAsyncRepository<Category> _repository;
         private readonly IMapper _mapper;
 
-        public GetCategoryListQueryHandler(IAsyncRepository<Category> repository, IMapper mapper)
+        public GetCategoriesListQueryHandler(IAsyncRepository<Category> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
 
-        public async Task<List<CategoryListVm>> Handle(GetCategoryListQuery request, CancellationToken cancellationToken)
+        public async Task<List<CategoryListVm>> Handle(GetCategoriesListQuery request, CancellationToken cancellationToken)
         {
             var categories = (await _repository.ListAllAsync()).OrderBy(x => x.Name);
             return _mapper.Map<List<CategoryListVm>>(categories);

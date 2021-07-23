@@ -24,7 +24,7 @@ namespace GlobalTicket.TicketManagement.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<List<CategoryListVm>>> GetAllCategories()
         {
-            var vm = await _mediator.Send(new GetCategoryListQuery());
+            var vm = await _mediator.Send(new GetCategoriesListQuery());
             return Ok(vm);
         }
 

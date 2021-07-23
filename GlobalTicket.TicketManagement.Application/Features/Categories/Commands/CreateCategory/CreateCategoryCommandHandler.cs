@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using GlobalTicket.TicketManagement.Application.Contracts.Persistence;
 using GlobalTicket.TicketManagement.Domain.Entities;
-using MediatR;
-using System;
+using MediatR; 
 using System.Threading;
 using System.Threading.Tasks;
 
