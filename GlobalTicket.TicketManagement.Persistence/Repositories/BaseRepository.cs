@@ -1,11 +1,11 @@
-﻿using GlobalTicket.TicketManagement.Application.Contracts.Persistance;
+﻿using GlobalTicket.TicketManagement.Application.Contracts.Persistence;
 using GloboTicket.TicketManagement.Persistence;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace GlobalTicket.TicketManagement.Persistance.Repositories
+namespace GlobalTicket.TicketManagement.Persistence.Repositories
 {
     public class BaseRepository<T> : IAsyncRepository<T> where T : class
     {

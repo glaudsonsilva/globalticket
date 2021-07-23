@@ -1,4 +1,4 @@
-﻿using GlobalTicket.TicketManagement.Application.Contracts.Persistance;
+﻿using GlobalTicket.TicketManagement.Application.Contracts.Persistence;
 using MediatR;
 using System;
 using System.Threading;

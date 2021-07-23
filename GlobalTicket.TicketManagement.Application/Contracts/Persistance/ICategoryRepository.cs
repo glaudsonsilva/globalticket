@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace GlobalTicket.TicketManagement.Application.Contracts.Persistance
+namespace GlobalTicket.TicketManagement.Application.Contracts.Persistence
 {
     public interface ICategoryRepository : IAsyncRepository<Category>
     {

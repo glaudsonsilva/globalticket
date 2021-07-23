@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace GlobalTicket.TicketManagement.Application.Contracts.Persistance
+namespace GlobalTicket.TicketManagement.Application.Contracts.Persistence
 {
     public interface IEventRepository : IAsyncRepository<Event>
     {

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using GlobalTicket.TicketManagement.Application.Contracts.Infrastructure;
-using GlobalTicket.TicketManagement.Application.Contracts.Persistance;
+using GlobalTicket.TicketManagement.Application.Contracts.Persistence;
 using GlobalTicket.TicketManagement.Application.Models.Mail;
 using GlobalTicket.TicketManagement.Domain.Entities;
 using MediatR;

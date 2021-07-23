@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using GlobalTicket.TicketManagement.Application.Contracts.Persistance;
+using GlobalTicket.TicketManagement.Application.Contracts.Persistence;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
