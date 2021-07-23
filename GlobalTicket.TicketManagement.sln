@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GlobalTicket.TicketManageme
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GlobalTicket.TicketManagement.Api", "GlobalTicket.TicketManagement.Api\GlobalTicket.TicketManagement.Api.csproj", "{D5E5719F-2B7B-428D-8411-3DA77BB3EE7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalTicket.TicketManagement.Application.UnitTests", "GlobalTicket.TicketManagement.Application.UnitTests\GlobalTicket.TicketManagement.Application.UnitTests.csproj", "{D429B8FB-80B3-4037-9861-256433B5B9DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GlobalTicket.TicketManagement.Application.UnitTests", "GlobalTicket.TicketManagement.Application.UnitTests\GlobalTicket.TicketManagement.Application.UnitTests.csproj", "{D429B8FB-80B3-4037-9861-256433B5B9DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
