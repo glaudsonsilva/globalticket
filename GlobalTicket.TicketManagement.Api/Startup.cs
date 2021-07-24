@@ -3,13 +3,16 @@ using GlobalTicket.TicketManagement.Api.Services;
 using GlobalTicket.TicketManagement.Api.Utility;
 using GlobalTicket.TicketManagement.Application;
 using GlobalTicket.TicketManagement.Application.Contracts.Persistence;
+using GlobalTicket.TicketManagement.Identity;
 using GlobalTicket.TicketManagement.Infrastructure;
 using GlobalTicket.TicketManagement.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting; 
+using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using System.Collections.Generic;
 
 namespace GlobalTicket.TicketManagement.Api
 {
@@ -29,6 +32,7 @@ namespace GlobalTicket.TicketManagement.Api
             services.AddApplicationServices();
             services.AddInfrastructureServices(Configuration);
             services.AddPersistenceServices(Configuration);
+            services.AddIdentityServices(Configuration);
 
             services.AddScoped<ILoggedInUserService, LoggedInUserService>();
 
@@ -39,15 +43,45 @@ namespace GlobalTicket.TicketManagement.Api
                 options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
         }
-
         private void AddSwagger(IServiceCollection services)
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n 
+                      Enter 'Bearer' [space] and then your token in the text input below.
+                      \r\n\r\nExample: 'Bearer 12345abcdef'",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                  {
+                    {
+                      new OpenApiSecurityScheme
+                      {
+                        Reference = new OpenApiReference
+                          {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                          },
+                          Scheme = "oauth2",
+                          Name = "Bearer",
+                          In = ParameterLocation.Header,
+
+                        },
+                        new List<string>()
+                      }
+                    });
+
+                c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "GlobalTicket Ticket Management API"
+                    Title = "GlobalTicket Ticket Management API",
+
                 });
 
                 c.OperationFilter<FileResultContentTypeOperationFilter>();
@@ -61,6 +95,7 @@ namespace GlobalTicket.TicketManagement.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseRouting();
 
@@ -73,6 +108,8 @@ namespace GlobalTicket.TicketManagement.Api
             app.UseCustomExceptionHandler();
 
             app.UseCors("Open");
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

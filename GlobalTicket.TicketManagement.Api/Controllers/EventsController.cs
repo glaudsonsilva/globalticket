@@ -1,13 +1,11 @@
-﻿using GlobalTicket.TicketManagement.Application.Features.Categories.Queries.GetCategoriesList;
-using GlobalTicket.TicketManagement.Application.Features.Categories.Queries.GetCategoriesListWithEvents;
-using GlobalTicket.TicketManagement.Application.Features.Events.Commands.CreateCategory;
-using GlobalTicket.TicketManagement.Application.Features.Events.Commands.CreateEvent;
+﻿using GlobalTicket.TicketManagement.Application.Features.Events.Commands.CreateEvent;
 using GlobalTicket.TicketManagement.Application.Features.Events.Commands.DeleteEvent;
 using GlobalTicket.TicketManagement.Application.Features.Events.Commands.UpdateEvent;
 using GlobalTicket.TicketManagement.Application.Features.Events.Queries.GetAll;
 using GlobalTicket.TicketManagement.Application.Features.Events.Queries.GetDetailed;
 using GlobalTicket.TicketManagement.Application.Features.Events.Queries.GetEventsExport;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -18,6 +16,7 @@ namespace GlobalTicket.TicketManagement.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class EventsController : ControllerBase
     {
         private readonly IMediator _mediator;
