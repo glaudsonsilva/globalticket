@@ -1,9 +1,8 @@
 ﻿using GlobalTicket.TicketManagement.Application.Exceptions;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -11,7 +10,7 @@ namespace GlobalTicket.TicketManagement.Api.Middleware
 {
     public class ExceptionHandlerMiddleware
     {
-        private readonly RequestDelegate _next;
+        private readonly RequestDelegate _next; 
 
         public ExceptionHandlerMiddleware(RequestDelegate next)
         {

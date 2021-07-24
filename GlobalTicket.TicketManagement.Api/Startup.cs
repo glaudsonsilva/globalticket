@@ -1,14 +1,15 @@
 using GlobalTicket.TicketManagement.Api.Middleware;
+using GlobalTicket.TicketManagement.Api.Services;
 using GlobalTicket.TicketManagement.Api.Utility;
 using GlobalTicket.TicketManagement.Application;
+using GlobalTicket.TicketManagement.Application.Contracts.Persistence;
 using GlobalTicket.TicketManagement.Infrastructure;
 using GlobalTicket.TicketManagement.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System;
+using Microsoft.Extensions.Hosting; 
 
 namespace GlobalTicket.TicketManagement.Api
 {
@@ -28,6 +29,9 @@ namespace GlobalTicket.TicketManagement.Api
             services.AddApplicationServices();
             services.AddInfrastructureServices(Configuration);
             services.AddPersistenceServices(Configuration);
+
+            services.AddScoped<ILoggedInUserService, LoggedInUserService>();
+
             services.AddControllers();
 
             services.AddCors(options =>

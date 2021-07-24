@@ -4,6 +4,8 @@ using GlobalTicket.TicketManagement.Application.Contracts.Persistence;
 using GlobalTicket.TicketManagement.Application.Models.Mail;
 using GlobalTicket.TicketManagement.Domain.Entities;
 using MediatR;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,16 +17,20 @@ namespace GlobalTicket.TicketManagement.Application.Features.Events.Commands.Cre
         private readonly IEventRepository _repository;
         private readonly IMapper _mapper;
         private readonly IEmailService _emailService;
+        private readonly ILogger<CreateEventCommandHandler> _logger;
 
-        public CreateEventCommandHandler(IEventRepository repository, IMapper mapper, IEmailService emailService)
+        public CreateEventCommandHandler(IEventRepository repository, IMapper mapper, IEmailService emailService, ILogger<CreateEventCommandHandler> logger)
         {
             _repository = repository;
             _mapper = mapper;
             _emailService = emailService;
+            _logger = logger;
         }
 
         public async Task<Guid> Handle(CreateEventCommand request, CancellationToken cancellationToken)
         {
+            _logger.LogInformation($"Creating event: {JsonConvert.SerializeObject(request)}");
+
             var validator = new CreateEventCommandValidator(_repository);
             var validationResult = await validator.ValidateAsync(request);
 
@@ -35,12 +41,12 @@ namespace GlobalTicket.TicketManagement.Application.Features.Events.Commands.Cre
 
             @event = await _repository.AddAsync(@event);
 
-            await SendEmail(request);
+            await SendEmail(@event.EventId, request);
 
             return @event.EventId;
         }
 
-        private async Task SendEmail(CreateEventCommand request)
+        private async Task SendEmail(Guid eventId, CreateEventCommand request)
         {
             var email = new Email
             {
@@ -55,8 +61,7 @@ namespace GlobalTicket.TicketManagement.Application.Features.Events.Commands.Cre
             }
             catch (Exception ex)
             {
-                // this should't stop the API from doing else so this can be logged
-                throw;
+                _logger.LogError($"Mailing about event {eventId} failed due to an error with the mails service: {ex.Message}");
             }
         }
     }

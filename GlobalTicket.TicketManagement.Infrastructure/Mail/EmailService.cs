@@ -1,5 +1,6 @@
 ﻿using GlobalTicket.TicketManagement.Application.Contracts.Infrastructure;
 using GlobalTicket.TicketManagement.Application.Models.Mail;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SendGrid;
 using SendGrid.Helpers.Mail;
@@ -12,9 +13,12 @@ namespace GlobalTicket.TicketManagement.Infrastructure.Mail
     {
         public EmailSettings _emailSettings { get; }
 
-        public EmailService(IOptions<EmailSettings> emailSettings)
+        public ILogger<EmailService> _logger { get; }
+
+        public EmailService(IOptions<EmailSettings> emailSettings, ILogger<EmailService> logger)
         {
             _emailSettings = emailSettings.Value;
+            _logger = logger;
         }
 
         public async Task<bool> SendEmail(Email email)
@@ -31,7 +35,16 @@ namespace GlobalTicket.TicketManagement.Infrastructure.Mail
             var sendGridMessage = MailHelper.CreateSingleEmail(from, to, email.Subject, email.Body, email.Body);
             var response = await client.SendEmailAsync(sendGridMessage);
 
-            return response.StatusCode == HttpStatusCode.Accepted || response.StatusCode == HttpStatusCode.OK;
+            _logger.LogInformation("Email sent");
+
+            var success = response.StatusCode == HttpStatusCode.Accepted || response.StatusCode == HttpStatusCode.OK;
+
+            if (success)
+                return true;
+
+            _logger.LogError("Email sending failed");
+
+            return false;
         }
     }
 }
